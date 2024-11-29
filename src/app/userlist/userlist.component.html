@@ -1,0 +1,27 @@
+<div class="p-5 border shadow rounded-4 bg-light">
+  <h2 class="text-center mb-4">Users List</h2>
+
+  <div *ngIf="users.length === 0" class="text-center text-muted">
+    <h6>No Users Found</h6>
+  </div>
+
+  <div
+    *ngFor="let user of users; let i = index"
+    class="p-3 mb-3 rounded border"
+    [ngClass]="{
+      'bg-danger text-white': user.password.length < 5,
+      'bg-white': user.password.length >= 5
+    }"
+    (click)="deleteUser(i)"
+    style="cursor: pointer;"
+  >
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="col-auto me-2 px-2">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div class="col-auto">
+        <h6 class="mb-0">{{ user.name }}</h6>
+      </div>
+    </div>
+  </div>
+</div>
